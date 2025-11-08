@@ -2,11 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import LoginModal from "./LoginModal";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
 
   const navLinks = [
     { name: "Rooms", href: "#rooms" },
@@ -18,6 +16,7 @@ const Navbar = () => {
     <div className="sticky top-0 left-0 right-0 z-40 px-4">
       <nav className="max-w-5xl mx-auto bg-[#97A87A] rounded-[30px] shadow-2xl">
         <div className="flex justify-between items-center h-14 px-8">
+          {/* Logo */}
           <Link
             href="/"
             className="text-xl font-bold text-white hover:text-[#DAD7CD] transition duration-150"
@@ -25,7 +24,7 @@ const Navbar = () => {
             Gsuites
           </Link>
 
-          {/* Desktop Links */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex flex-grow justify-end items-center space-x-6">
             {navLinks.map((link) => (
               <Link
@@ -36,12 +35,12 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <button
-              onClick={() => setShowLogin(true)}
+            <Link
+              href="/auth/login"
               className="px-6 py-2 text-sm font-medium text-gray-800 bg-[#DAD7CD] rounded-full hover:bg-white transition duration-300 transform hover:scale-[1.03] shadow-md ml-8"
             >
               Login
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -57,7 +56,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
       <div
         className={`${
           isOpen ? "block" : "hidden"
@@ -74,20 +73,15 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <button
-            onClick={() => {
-              setShowLogin(true);
-              setIsOpen(false);
-            }}
+          <Link
+            href="/auth/login"
             className="mt-2 block w-full text-center px-4 py-2 text-sm font-medium text-gray-800 bg-[#DAD7CD] rounded-full hover:bg-white shadow-md"
+            onClick={() => setIsOpen(false)}
           >
             Login
-          </button>
+          </Link>
         </div>
       </div>
-
-      {/* Modal */}
-      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
     </div>
   );
 };
