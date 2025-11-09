@@ -3,8 +3,6 @@
 import { StatCard } from "../components/StatCard";
 import { DataTable } from "../components/DataTable";
 
-
-
 export default function AdminPage() {
   return (
     <div className="p-9 ml-16 bg-white-100 min-h-screen">

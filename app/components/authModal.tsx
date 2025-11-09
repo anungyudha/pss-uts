@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { authApi } from "../lib/api/auth";
+import { authHelpers } from "../lib/utils/auth";
 
-export default function LoginModal({ onClose }: { onClose: () => void }) {
+export default function AuthModal({ onClose }: { onClose: () => void }) {
   const [isLogin, setIsLogin] = useState(true);
-  const [registerStep, setRegisterStep] = useState(1); // 1: Email, 2: OTP, 3: Form Lengkap
+  const [registerStep, setRegisterStep] = useState(1);
 
   // State untuk form
   const [email, setEmail] = useState("");
@@ -24,21 +26,32 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      // Login dan dapatkan token
+      const loginResponse = await authApi.login({ email, password });
+      const { token } = loginResponse.datas;
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Login gagal");
+      // Simpan token
+      authHelpers.setToken(token);
 
-      localStorage.setItem("token", data.token);
-      alert("Login sukses!");
+      // Ambil data user untuk cek role
+      const meResponse = await authApi.me();
+      const userData = meResponse.datas;
+
+      // Simpan data user
+      authHelpers.setUserData(userData);
+
+      alert(`Login sukses! Selamat datang, ${userData.username}`);
       onClose();
-      window.location.href = "/dashboard";
+
+      // Redirect berdasarkan role
+      if (userData.role === "admin") {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/";
+      }
     } catch (err: any) {
-      setError(err.message);
+      const errorMsg = err.response?.data?.massage || err.message || "Login gagal";
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -51,19 +64,12 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/register/request-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Gagal mengirim OTP");
-
+      await authApi.requestOTP({ email });
       alert("OTP telah dikirim ke email Anda!");
       setRegisterStep(2);
     } catch (err: any) {
-      setError(err.message);
+      const errorMsg = err.response?.data?.massage || err.message || "Gagal mengirim OTP";
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -76,19 +82,12 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/register/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, otp }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Kode OTP salah");
-
+      await authApi.verifyOTP({ email, otp });
       alert("Verifikasi berhasil!");
       setRegisterStep(3);
     } catch (err: any) {
-      setError(err.message);
+      const errorMsg = err.response?.data?.massage || err.message || "Kode OTP salah";
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -112,25 +111,19 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/register/complete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, otp, username, password }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Registrasi gagal");
-
+      await authApi.completeRegistration({ email, username, password, confPassword: confirmPassword });
       alert("Registrasi berhasil! Silakan login.");
+      
+      // Reset form dan switch ke login
       setIsLogin(true);
       setRegisterStep(1);
       setEmail("");
-      setOtp("");
       setUsername("");
       setPassword("");
       setConfirmPassword("");
     } catch (err: any) {
-      setError(err.message);
+      const errorMsg = err.response?.data?.massage || err.message || "Registrasi gagal";
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
