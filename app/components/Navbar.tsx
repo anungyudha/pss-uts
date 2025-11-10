@@ -12,7 +12,6 @@ const Navbar = () => {
   const [user, setUser] = useState<UserData | null>(null);
 
   useEffect(() => {
-    // Cek apakah user sudah login
     const userData = authHelpers.getUserData();
     setUser(userData);
   }, []);
