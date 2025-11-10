@@ -1,19 +1,12 @@
+"use client";
+
 import { Sidebar } from "../components/Sidebar";
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
       <Sidebar />
-
-      {/* Konten utama */}
-      <main className="flex-1 ml-64 p-8">
-        {children}
-      </main>
+      <main className="flex-1 ml-64 p-8">{children}</main>
     </div>
   );
 }

@@ -5,10 +5,8 @@ import { usePathname } from 'next/navigation';
 import { Home, ClipboardList, Bed, User } from 'lucide-react';
 
 const navItems = [
-  { href: '/admin', icon: Home, label: 'Dashboard Utama' },
+  { href: '/admin', icon: Home, label: 'Fasilitas' },
   { href: '/kost', icon: Bed, label: 'Kamar' },
-  { href: '/transaksi', icon: ClipboardList, label: 'Fasilitas' },
-  { href: '/users', icon: User, label: 'Manajemen User' },
 ];
 
 export function Sidebar() {

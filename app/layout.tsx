@@ -7,6 +7,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -18,11 +19,7 @@ export const metadata: Metadata = {
   description: "Temukan pilihan kost eksklusif dengan desain modern di lokasi terbaik.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#DAD7CD]`}>
