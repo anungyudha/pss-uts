@@ -1,8 +1,11 @@
 "use client";
 
+import { StatCard } from "../components/StatCard";
 import { DataTableFasilitas } from "../components/DataTableFasilitas";
 
-export default function FasilitasPage() {
+
+
+export default function AdminPage() {
   return (
     <div className="p-9 ml-16 bg-white-100 min-h-screen">
           {/* Header */}
