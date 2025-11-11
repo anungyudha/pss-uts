@@ -10,21 +10,17 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Parse user data untuk cek role
   if (userData) {
     try {
       const user = JSON.parse(userData);
       
-      // Jika bukan admin, redirect ke homepage
       if (user.role !== 'admin') {
         return NextResponse.redirect(new URL('/', request.url));
       }
     } catch (error) {
-      // Jika gagal parse, redirect ke login
       return NextResponse.redirect(new URL('/login', request.url));
     }
   } else {
-    // Jika tidak ada user data, redirect ke login
     return NextResponse.redirect(new URL('/login', request.url));
   }
 

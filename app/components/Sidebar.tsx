@@ -2,19 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Home, Bed, LogOut, ExternalLink, User } from 'lucide-react';
-import { useAuthContext } from '../admin/layout';
+import { Home, Bed, LogOut, ExternalLink, User, Tv } from 'lucide-react';
+import { useAuthContext } from '../admin/layout'; // Sesuaikan path
 
 const navItems = [
   { href: '/admin', icon: Home, label: 'Dashboard' },
-  { href: '/admin/fasilitas', icon: Bed, label: 'Fasilitas' },
   { href: '/admin/kost', icon: Bed, label: 'Kamar' },
+  { href: '/admin/fasilitas', icon: Tv, label: 'Fasilitas' },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, logout } = useAuthContext(); // Ambil dari context, bukan hook
+  const { user, logout } = useAuthContext();
 
   const handleLogout = () => {
     logout();
@@ -44,17 +44,19 @@ export function Sidebar() {
               </div>
             )}
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">
-                {user.username}
-              </p>
+              <div className="flex items-center gap-2 mb-1">
+                <p className="text-sm font-medium truncate">
+                  {user.username}
+                </p>
+                {user.role && (
+                  <span className="px-2 py-0.5 text-xs font-medium bg-indigo-600 rounded-full flex-shrink-0">
+                    {user.role}
+                  </span>
+                )}
+              </div>
               <p className="text-xs text-gray-400 truncate">
                 {user.email}
               </p>
-              {user.role && (
-                <span className="inline-block mt-1 px-2 py-0.5 text-xs font-medium bg-indigo-600 rounded-full">
-                  {user.role}
-                </span>
-              )}
             </div>
           </div>
         ) : (

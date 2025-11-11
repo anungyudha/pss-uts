@@ -13,15 +13,6 @@ export default function Modal({ title, children, onClose }: ModalProps) {
         <h2 className="text-xl font-semibold mb-4">{title}</h2>
 
         {children}
-
-        <div className="text-right mt-4">
-          <button
-            className="px-4 py-2 bg-gray-300 text-black rounded-lg hover:bg-gray-400"
-            onClick={onClose}
-          >
-            Tutup
-          </button>
-        </div>
       </div>
     </div>
   );

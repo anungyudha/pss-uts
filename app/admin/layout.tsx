@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   // Redirect jika tidak authenticated atau bukan admin
   if (!isAuthenticated || !isAdmin) {
     if (!isAuthenticated) {
-      router.push('/login');
+      router.push('/');
     } else {
       router.push('/');
     }
@@ -61,7 +61,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <AuthContext.Provider value={{ user, loading, logout }}>
       <div className="flex min-h-screen bg-gray-100">
         <Sidebar />
-        <main className="flex-1 ml-32 p-5">
+        <main className="flex-1 ml-64 p-5">
           {children}
         </main>
       </div>
