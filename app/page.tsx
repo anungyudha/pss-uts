@@ -123,14 +123,14 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <Link
               href="/search"
               className="inline-block px-8 py-3 bg-[#DAD7CD] text-[#97A87A] font-semibold rounded-full hover:bg-gray-200 transition duration-300 shadow-md"
             >
               Lihat Semua Kost
             </Link>
-          </div>
+          </div> */}
         </section>
 
         <section id="location" className="bg-[#97A87A] py-16 border-t border-gray-200">
@@ -184,9 +184,10 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
+        
+        <Footer />
       </div>
-      <Footer />
+      
     </>
   );
 }

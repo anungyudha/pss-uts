@@ -97,7 +97,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+      <div className="bg-[#97A87A] rounded-xl shadow-lg p-6 text-[#DAD7CD]">
         <h1 className="text-3xl font-bold mb-2">Dashboard Admin</h1>
         <p className="text-indigo-100">
           Selamat datang kembali! Berikut ringkasan sistem kost Anda hari ini.

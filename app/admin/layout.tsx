@@ -30,7 +30,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   // Cek auth saat pertama kali load
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen bg-[#DAD7CD]">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
           <p className="mt-4 text-gray-600">Memuat...</p>
@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       router.push('/');
     }
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center min-h-screen bg-[#DAD7CD]">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"></div>
           <p className="mt-4 text-gray-600">Mengalihkan...</p>
@@ -59,7 +59,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   // Provide auth data ke children (termasuk Sidebar)
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
-      <div className="flex min-h-screen bg-gray-100">
+      <div className="flex min-h-screen [#DAD7CD]">
         <Sidebar />
         <main className="flex-1 ml-64 p-5">
           {children}
