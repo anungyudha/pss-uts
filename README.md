@@ -34,3 +34,64 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+```
+FE-KostApp
+├─ app
+│  ├─ admin
+│  │  ├─ fasilitas
+│  │  │  └─ page.tsx
+│  │  ├─ kost
+│  │  │  └─ page.tsx
+│  │  ├─ layout.tsx
+│  │  └─ page.tsx
+│  ├─ components
+│  │  ├─ AdminLayout.tsx
+│  │  ├─ authModal.tsx
+│  │  ├─ DataTable.tsx
+│  │  ├─ DataTableFasilitas.tsx
+│  │  ├─ Footer.tsx
+│  │  ├─ KostCard.tsx
+│  │  ├─ Modal.tsx
+│  │  ├─ Navbar.tsx
+│  │  ├─ Sidebar.tsx
+│  │  └─ StatCard.tsx
+│  ├─ favicon.ico
+│  ├─ fonts
+│  │  ├─ GeistMonoVF.woff
+│  │  └─ GeistVF.woff
+│  ├─ globals.css
+│  ├─ layout.tsx
+│  ├─ lib
+│  │  ├─ api
+│  │  │  ├─ auth.ts
+│  │  │  ├─ axios.ts
+│  │  │  ├─ dashboard.ts
+│  │  │  ├─ facility.ts
+│  │  │  └─ room.ts
+│  │  ├─ constants.ts
+│  │  ├─ hooks
+│  │  │  ├─ useAuth.ts
+│  │  │  ├─ useDashboard.ts
+│  │  │  ├─ useFacility.ts
+│  │  │  └─ useRoom.ts
+│  │  ├─ types
+│  │  │  ├─ auth.ts
+│  │  │  ├─ dashboard.ts
+│  │  │  ├─ facility.ts
+│  │  │  └─ room.ts
+│  │  └─ utils
+│  │     └─ auth.ts
+│  ├─ middleware.ts
+│  └─ page.tsx
+├─ next.config.mjs
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.mjs
+├─ public
+│  └─ Hero-Image.jpg
+├─ README.md
+├─ tailwind.config.ts
+└─ tsconfig.json
+
+```

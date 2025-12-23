@@ -97,7 +97,7 @@ export default function HomePage() {
               {/* Search Bar Sederhana */}
               <div className="flex w-full">
                 <input
-                  type="text"
+                  type="text" 
                   placeholder="Cari lokasi, area, atau nama kost..."
                   className="w-full p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-[#97A87A] focus:border-transparent transition-shadow"
                 />
@@ -187,7 +187,6 @@ export default function HomePage() {
         
         <Footer />
       </div>
-      
     </>
   );
 }
